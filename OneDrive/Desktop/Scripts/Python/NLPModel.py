@@ -1,7 +1,10 @@
-
 # Import dependencies
 import pandas as pd
 import nltk
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
 from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.tag import pos_tag
@@ -76,7 +79,7 @@ class part_2(QThread):
         testing_path = NLP.loc[0,'TEST FILE']
         
         # Delete the files from the file path #
-        os.remove(NLPpath + '\\NLP.csv')     
+        # os.remove(NLPpath + '\\NLP.csv')     
         
         print('file read and removed')
             
@@ -139,7 +142,7 @@ class part_2(QThread):
             for i in range(len(dataset)):
                 try:
                     dataset.loc[i, 'Text_Details'] = spell(dataset.loc[i, 'Text_Details'])
-                    self.Updates.emit('Spell Checking ' + str(i))
+                    # self.Updates.emit('Spell Checking ' + str(i))
                     print('Spell Checking ' + str(i))
                 except:
                     pass
@@ -573,10 +576,10 @@ class Ui_MainWindow(object):
         x = msg.exec_()
         
         # Delete the files from the file path #
-        try:
-            os.remove(NLPpath + '\\NLP.csv')  
-        except:
-            pass
+        # try:
+        #     os.remove(NLPpath + '\\NLP.csv')  
+        # except:
+        #     pass
 
 ############################################################################################################################################################
             
@@ -600,4 +603,3 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
